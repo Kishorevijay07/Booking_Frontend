@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { MapContainer, Marker, TileLayer, useMapEvents } from "react-leaflet";
-
+import { baseUrl } from "../constant/BaseUrl";
 const defaultPosition = [13.0827, 80.2707]; // Chennai default
 
 const LocationSelector = ({ onSelect }) => {
@@ -38,7 +38,7 @@ const Host = () => {
     mutationFn: async (data) => {
       console.log(data)
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:3000/listings", {
+      const res = await fetch(`${baseUrl}/listings`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

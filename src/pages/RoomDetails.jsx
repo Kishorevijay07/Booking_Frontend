@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
+import { baseUrl } from '../constant/BaseUrl';
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -20,7 +21,7 @@ const RoomDetails = () => {
 const { data: room, isLoading, error } = useQuery({
   queryKey: ['roomDetails', id],
   queryFn: async () => {
-    const res = await fetch(`http://localhost:3000/listings/${id}`);
+    const res = await fetch(`${baseUrl}/listings/${id}`);
     if (!res.ok) throw new Error("Failed to fetch room details");
     return res.json();
   },
@@ -57,7 +58,7 @@ const { data: room, isLoading, error } = useQuery({
 
   try {
 
-    const res = await fetch("http://localhost:3000/booking", {
+    const res = await fetch(`${baseUrl}/booking`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -2,9 +2,10 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import bookingBg from './../assets/booking-2.jpg'; // Use the same image as login
+import { baseUrl } from '../constant/BaseUrl';
 
 const signupApi = async (userData) => {
-  const res = await fetch('http://localhost:3000/auth/register', {
+  const res = await fetch(`${baseUrl}/auth/register`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userData),
@@ -15,7 +16,7 @@ const signupApi = async (userData) => {
   if (!res.ok) {
     throw new Error(data.message || 'Signup failed');
   }
-  
+
   localStorage.setItem('token', data.token); // Save token if your backend returns it
   return data;
 };

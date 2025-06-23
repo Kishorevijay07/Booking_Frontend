@@ -6,6 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import Host from './pages/Host.jsx';
 import RoomDetails from './pages/RoomDetails.jsx';
 import BookingHistory from './pages/BookingHistory.jsx';
+import { baseUrl } from './constant/BaseUrl.jsx';
 function App() {
 
   const {data:authUser}=useQuery({
@@ -15,7 +16,7 @@ function App() {
       try {
         const token = localStorage.getItem('token');
         console.log("The Token Before Get",token)
-        const res = await fetch(`	http://localhost:3000/auth/getme`,{
+        const res = await fetch(`${baseUrl}/auth/getme`,{
           method:"GET",
           headers: {
             Authorization: `Bearer ${token}`

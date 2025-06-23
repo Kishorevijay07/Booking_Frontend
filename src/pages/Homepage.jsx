@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import stayfinder from "./../assets/stayfinder.png";
-
+import { baseUrl } from '../constant/BaseUrl';
 const Section = ({ homes }) => {
   // Group homes by city
   const groupedByCity = homes.reduce((acc, home) => {
@@ -67,7 +67,7 @@ const AirbnbClone = () => {
     queryFn: async () => {
       const token = localStorage.getItem('token');
       if (!token) return null;
-      const res = await fetch(`http://localhost:3000/auth/getme`, {
+      const res = await fetch(`${baseUrl}/auth/getme`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       return res.json();
@@ -78,7 +78,7 @@ const AirbnbClone = () => {
     queryKey: ['Listings'],
     queryFn: async () => {
       const token = localStorage.getItem('token');
-      const res = await fetch(`http://localhost:3000/listings`, {
+      const res = await fetch(`${baseUrl}/listings`, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',

@@ -3,11 +3,11 @@ import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query"
 import { useState } from 'react';
 import bookingBg from './../assets/booking-2.jpg'; // ✅ Import image
 import { useNavigate } from 'react-router-dom';
-
+import { baseUrl } from "../constant/BaseUrl";
 
 const loginApi = async (userData) => {
   console.log(userData)
-  const res = await fetch('http://localhost:3000/auth/login', {
+  const res = await fetch(`${baseUrl}/auth/login`, {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify(userData),

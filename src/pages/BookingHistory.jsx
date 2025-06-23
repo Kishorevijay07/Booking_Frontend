@@ -1,12 +1,12 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
-
+import { baseUrl } from '../constant/BaseUrl';
 const BookingHistory = () => {
   const { data: bookings = [], isLoading, error } = useQuery({
     queryKey: ['myBookings'],
     queryFn: async () => {
       const token = localStorage.getItem("token");
-      const res = await fetch("http://localhost:3000/booking", {
+      const res = await fetch(`${baseUrl}/booking`, {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` }
       });
